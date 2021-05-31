@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes/components/app_bar_widget.dart';
 
 class CreateNotePage extends StatefulWidget {
   @override
@@ -27,9 +28,8 @@ class _CreateNotePageState extends State<CreateNotePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(isEdit ? "Editar senha" : "Crie uma nova senha"),
-        centerTitle: true,
+      appBar: AppBarWidget(
+        title: isEdit ? "Editar senha" : "Crie uma nova senha",
         actions: [
           if (isEdit = true)
             IconButton(

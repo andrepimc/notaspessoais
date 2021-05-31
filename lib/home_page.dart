@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:notes/components/app_bar_widget.dart';
+import 'package:notes/components/card_component.dart';
 import 'package:notes/create_note_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,18 +14,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Minhas Senhas"),
-        centerTitle: true,
-      ),
+      appBar: AppBarWidget(title: "Minhas Senhas"),
       body: Center(
           child: SingleChildScrollView(
         child: Column(
           children: [
             for (var i = 0; i < notes.length; i++)
-              Card(
-                  child: ListTile(
-                title: Text(notes[i]),
+              CardComponent(
+                note: notes[i],
                 onTap: () async {
                   var response = (await Navigator.pushNamed(
                       context, "/create-note",
@@ -32,13 +30,13 @@ class _HomePageState extends State<HomePage> {
                     var description = response as String;
                     if (response.isEmpty) {
                       notes.removeAt(i);
-                    }else{
+                    } else {
                       notes[i] = description;
                     }
                     setState(() {});
                   }
                 },
-              )),
+              ),
           ],
         ),
       )),
